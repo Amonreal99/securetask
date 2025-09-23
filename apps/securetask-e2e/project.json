@@ -1,0 +1,10 @@
+{
+  "name": "securetask-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/securetask-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["securetask"],
+  "// targets": "to see all targets run: nx show project securetask-e2e --web",
+  "targets": {}
+}
