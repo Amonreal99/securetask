@@ -1,0 +1,51 @@
+<div class="p-6 max-w-4xl mx-auto space-y-6">
+    <h2 class="text-2xl font-bold">Manage Teams</h2>
+
+    <!-- Add User to Team -->
+    <div class="bg-white p-4 shadow rounded">
+        <h3 class="font-semibold mb-2">Add User to Team</h3>
+        <form [formGroup]="addUserForm" (ngSubmit)="addUser()" class="space-y-2">
+            <input formControlName="caller_id" type="number" placeholder="Your User ID"
+                class="w-full border rounded px-3 py-2" readonly />
+
+            <input formControlName="project_id" type="number" placeholder="Project ID"
+                class="w-full border rounded px-3 py-2" readonly />
+
+            <!-- changed from user_id → email -->
+            <input formControlName="email" type="email" placeholder="User Email"
+                class="w-full border rounded px-3 py-2" />
+
+            <input formControlName="team_id" type="number" placeholder="Team ID"
+                class="w-full border rounded px-3 py-2" />
+
+            <select formControlName="role" class="w-full border rounded px-3 py-2">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                Add User
+            </button>
+        </form>
+    </div>
+
+    <!-- Remove User from Team -->
+    <div class="bg-white p-4 shadow rounded">
+        <h3 class="font-semibold mb-2">Remove User from Team</h3>
+        <form [formGroup]="removeUserForm" (ngSubmit)="removeUser()" class="space-y-2">
+            <input formControlName="project_id" type="number" placeholder="Project ID"
+                class="w-full border rounded px-3 py-2" readonly />
+
+            <input formControlName="team_id" type="number" placeholder="Team ID"
+                class="w-full border rounded px-3 py-2" />
+
+            <!-- changed from user_id → email -->
+            <input formControlName="email" type="email" placeholder="User Email"
+                class="w-full border rounded px-3 py-2" />
+
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                Remove User
+            </button>
+        </form>
+    </div>
+</div>

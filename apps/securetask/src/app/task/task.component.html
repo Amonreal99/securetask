@@ -1,0 +1,29 @@
+<!-- Create Task -->
+<form [formGroup]="createTaskForm" (ngSubmit)="onCreateTask()" class="bg-white p-4 rounded shadow col-span-2">
+    <h3 class="font-semibold mb-2">Create Task</h3>
+    <input formControlName="title" placeholder="Task Title" class="w-full border rounded px-2 py-1 mb-2" />
+    <input formControlName="subject" placeholder="Subject" class="w-full border rounded px-2 py-1 mb-2" />
+    <textarea formControlName="body" placeholder="Task Body" class="w-full border rounded px-2 py-1 mb-2"></textarea>
+    <input formControlName="team_id" placeholder="Team ID" type="number" class="w-full border rounded px-2 py-1 mb-2" />
+    <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded">Create Task</button>
+</form>
+
+<!-- Back to Dashboard -->
+<div class="mt-4">
+    <button routerLink="/dashboard" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+        Back to Dashboard
+    </button>
+</div>
+
+<!-- Task List -->
+<div class="mt-6 w-full">
+    <h3 class="text-lg font-semibold mb-2">Project Tasks</h3>
+    <ul class="space-y-2">
+        <li *ngFor="let task of tasks" class="bg-white p-4 rounded shadow">
+            <h4 class="font-bold">{{ task.title }}</h4>
+            <p class="text-sm text-gray-600">{{ task.subject }}</p>
+            <p>{{ task.body }}</p>
+            <p class="text-xs text-gray-400">Team ID: {{ task.team?.id }}</p>
+        </li>
+    </ul>
+</div>

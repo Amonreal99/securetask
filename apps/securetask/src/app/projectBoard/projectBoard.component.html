@@ -1,0 +1,88 @@
+<div class="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Manage Project Members</h2>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+
+
+        <form [formGroup]="addUserForm" (ngSubmit)="onAddUser()"
+            class="bg-white p-6 rounded shadow space-y-4 flex flex-col">
+            <h3 class="font-semibold">Add User</h3>
+            <input type="email" formControlName="email" placeholder="Email" class="w-full border rounded px-3 py-2" />
+            <div>
+                <label class="block text-gray-700">Role</label>
+                <select formControlName="role" class="w-full border rounded px-3 py-2">
+                    <option value="viewer">Viewer</option>
+                    <option value="admin">Admin</option>
+                    <option value="owner">Owner</option>
+                </select>
+            </div>
+            <button type="submit" class="mt-auto w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                Add
+            </button>
+        </form>
+
+
+        <form [formGroup]="removeUserForm" (ngSubmit)="onRemoveUser()"
+            class="bg-white p-6 rounded shadow space-y-4 flex flex-col">
+            <h3 class="font-semibold">Remove User</h3>
+            <input type="email" formControlName="email" placeholder="User Email"
+                class="w-full border rounded px-3 py-2" />
+            <input type="number" formControlName="project_id" placeholder="Project ID"
+                class="w-full border rounded px-3 py-2" />
+            <button type="submit" class="mt-auto w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
+                Remove
+            </button>
+        </form>
+
+
+        <form [formGroup]="changeRoleForm" (ngSubmit)="onChangeRole()"
+            class="bg-white p-6 rounded shadow space-y-4 flex flex-col">
+            <h3 class="font-semibold">Change User Role</h3>
+            <input type="email" formControlName="email" placeholder="User Email"
+                class="w-full border rounded px-3 py-2" />
+            <input type="number" formControlName="project_id" placeholder="Project ID"
+                class="w-full border rounded px-3 py-2" />
+            <select formControlName="role" class="w-full border rounded px-3 py-2">
+                <option value="viewer">Viewer</option>
+                <option value="admin">Admin</option>
+                <option value="owner">Owner</option>
+            </select>
+            <button type="submit" class="mt-auto w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+                Change Role
+            </button>
+        </form>
+
+
+        <form [formGroup]="createTeamForm" (ngSubmit)="createTeam()"
+            class="bg-white p-6 rounded shadow space-y-4 flex flex-col">
+            <h3 class="font-semibold">Create Team</h3>
+            <input formControlName="name" placeholder="Team Name" class="w-full border rounded px-3 py-2" />
+            <input type="number" formControlName="project_id" placeholder="Project ID"
+                class="w-full border rounded px-3 py-2" />
+            <button type="submit" class="mt-auto w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                Create Team
+            </button>
+        </form>
+
+    </div>
+
+    <div class="mt-10 w-full max-w-4xl">
+        <h3 class="text-xl font-semibold mb-4">Teams</h3>
+        <ul class="space-y-2">
+            <li *ngFor="let team of teams" class="bg-white shadow rounded p-4 flex justify-between items-center">
+                <span class="font-bold">{{ team.name }}</span>
+                <button [routerLink]="['/tasks', projectId, team.id]"
+                    class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+                    Enter
+                </button>
+
+            </li>
+        </ul>
+    </div>
+
+    <button routerLink="/dashboard"
+        class="mt-8 bg-gray-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-600 transition">
+        Back to Dashboard
+    </button>
+</div>

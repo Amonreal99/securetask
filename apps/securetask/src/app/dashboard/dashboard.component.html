@@ -1,0 +1,64 @@
+<div class="min-h-screen bg-gray-100 flex flex-col items-center justify-start py-10 px-4">
+    <!-- Header -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Welcome to your Dashboard</h2>
+
+    <!-- User Info Card -->
+    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md mb-8">
+        <p class="text-lg font-semibold text-gray-700 mb-2">
+            Welcome, <span class="text-blue-600">{{ user?.username }}</span>
+        </p>
+        <p class="text-sm text-gray-600 mb-1">Email: {{ user?.email }}</p>
+        <p class="text-sm text-gray-600">Role: <span class="capitalize">{{ user?.role }}</span></p>
+    </div>
+
+    <!-- Create Project Form -->
+    <form [formGroup]="projectForm" (ngSubmit)="createProject()"
+        class="bg-white shadow-md rounded-lg p-6 w-full max-w-md space-y-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
+            <input type="text" formControlName="project_name" placeholder="Enter project name"
+                class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Teams</label>
+            <input type="number" formControlName="num_teams" placeholder="e.g. 3"
+                class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+
+        <button type="submit"
+            class="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+            Create Project
+        </button>
+    </form>
+
+
+    <div class="mt-8 w-full max-w-md">
+        <h3 class="text-xl font-semibold mb-4">Your Projects</h3>
+        <ul class="space-y-2">
+
+            <li *ngFor="let project of projects" class="relative bg-white shadow rounded p-4">
+                <button class="mt-1 bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700"
+                    [routerLink]="['/projectBoard',project.id]">
+                    Manage Project
+                </button>
+                <button (click)="deleteProject(project.id)"
+                    class="  absolute top-2 right-2 text-gray-400 hover:text-red-600 transition">
+                    ✕
+                </button>
+
+
+                <p class="font-bold">{{ project.project_name }}</p>
+                <p class="text-sm text-gray-600">Teams: {{ project.num_teams }}</p>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <!-- Logout -->
+    <button (click)="logout()"
+        class="mt-6 bg-gray-500 text-white font-medium py-2 px-6 rounded-lg hover:bg-gray-600 transition">
+        Logout
+    </button>
+</div>
